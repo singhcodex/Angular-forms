@@ -1,46 +1,54 @@
-<form class="form-reactive" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 border border-primary p-2 rounded shadow-lg">
+      <form class="form-reactive" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-  <h3>Reactive Form</h3>
-  <fieldset class="form-fieldset">
-    <legend>Name</legend>
-    <input type="text" class="form-control" placeholder="Enter name here" formControlName="fullName">
-  </fieldset>
-  <div class="warning-alert"
-      *ngIf="profileForm.get('fullName').invalid && profileForm.get('fullName').touched">
-      Name is Required.
+        <h3>Reactive Form</h3>
+        <div class="form-floating mb-3">
+          <input id="floatingInput" type="text" class="form-control" [ngClass]="isFieldValid('fullName')?'is-invalid':''" placeholder="Enter name here" formControlName="fullName">
+          <label for="floatingInput">Name*</label>
+        </div>
+        <div class="invalid-feedback mb-2" [ngClass]="isFieldValid('fullName')?'d-block':''">
+          Name must be introduce.
+        </div>
+        <div class="form-floating mb-3">
+          <input id="floatingEmail" type="text" class="form-control" [ngClass]="isFieldValid('email')?'is-invalid':''" placeholder="Enter email here" formControlName="email">
+          <label for="floatingEmail">Email*</label>
+        </div>
+        <div class="invalid-feedback mb-2" [ngClass]="isFieldValid('email')?'d-block':''">
+         Email must be Vaild email with @ sign.
+        </div>
+        <div class="form-floating mb-3">
+          <input id="floatingNumber" type="number" class="form-control" [ngClass]="isFieldValid('phone')?'is-invalid':''" placeholder="Enter phone number here" formControlName="phone">
+          <label for="floatingNumber">Phone*</label>
+        </div>
+        <div class="invalid-feedback mb-2" [ngClass]="isFieldValid('phone')?'d-block':''">
+          Phone number must be digit
+        </div>
+        <div class="form-floating mb-3 has-validation">
+          <input id="floatingAddress" type="text" class="form-control" [ngClass]="isFieldValid('address')?'is-invalid':''" placeholder="60357, frankfurt" formControlName="address">
+          <label for="floatingAddress">address</label>
+        </div>
+        <div class="invalid-feedback mb-2" [ngClass]="isFieldValid('address')?'d-block':''">
+          Address must match this Pattern 65235
+        </div>
+
+        <div class="form-floating mb-3">
+          <textarea id="floatingTextarea" class="form-control" placeholder="Say something!!"
+            formControlName="message"></textarea>
+            <label for="floatingTextarea">Message</label>
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="!profileForm.valid">Some Action!!</button>
+
+        <p>Form Value: {{ profileForm.value | json}}</p>
+        <p>Form Status: {{ profileForm.get('address').Status }}</p>
+      </form>
+
     </div>
-  <fieldset class="form-fieldset">
-    <legend>Email</legend>
-    <input type="text" class="form-control" placeholder="Enter email here" formControlName="email">
-  </fieldset>
-  <div class="warning-alert"
-    *ngIf="profileForm.get('email').invalid
-    && (profileForm.get('email').touched || profileForm.get('email').dirty)">
-    Email is Required and properly written.
+    <div class="col-4"></div>
   </div>
-  <fieldset class="form-fieldset">
-    <legend>Phone</legend>
-    <input type="text" class="form-control" placeholder="Enter phone number here" formControlName="phone">
-  </fieldset>
-  <div class="warning-alert"
-    *ngIf="profileForm.get('phone').invalid && profileForm.get('phone').touched">
-    Phone must be 12 Digit.
-  </div>
-  <fieldset class="form-fieldset">
-    <legend>address</legend>
-    <input type="text" class="form-control" placeholder="60357, frankfurt" formControlName="address">
-  </fieldset>
-  <div class="warning-alert"
-    *ngIf="profileForm.get('address').invalid && profileForm.get('address').touched">
-    Please check the address format <em>60357, frankfurt</em>.
-  </div>
-  <fieldset class="form-fieldset">
-    <legend>Message</legend>
-    <textarea cols="30" rows="10" class="form-textarea" placeholder="Say something!!"
-      formControlName="message"></textarea>
-  </fieldset>
-  <button class="btn btn-submit" type="submit" [disabled]="!profileForm.valid">Some Action!!</button>
-  <p>Form Value: {{ profileForm.value | json}}</p>
-  <p>Form Status: {{ profileForm.Status }}</p>
-</form>
+</div>
+
+
 
