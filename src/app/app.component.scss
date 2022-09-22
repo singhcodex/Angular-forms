@@ -1,0 +1,25 @@
+.nav{
+  display: flex;
+  justify-content:space-evenly;
+  margin: 1.25rem;
+  a{
+    text-decoration: none;
+    background-color: goldenrod;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    transition: all .2s linear;
+    &:hover{
+      transform: scale(1.1);
+      filter: drop-shadow(0px 4px 4px #484748);
+    }
+  }
+}
+
+.main{
+  background-color: #484748;
+  color: aliceblue;
+  width: fit-content;
+  margin:2rem auto;
+  padding: 1.25rem 1.75rem;
+  border-radius: 2rem 1.6rem 1.6rem 0rem;
+}

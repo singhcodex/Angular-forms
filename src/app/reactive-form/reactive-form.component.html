@@ -1,0 +1,46 @@
+<form class="form-reactive" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <h3>Reactive Form</h3>
+  <fieldset class="form-fieldset">
+    <legend>Name</legend>
+    <input type="text" class="form-control" placeholder="Enter name here" formControlName="fullName">
+  </fieldset>
+  <div class="warning-alert"
+      *ngIf="profileForm.get('fullName').invalid && profileForm.get('fullName').touched">
+      Name is Required.
+    </div>
+  <fieldset class="form-fieldset">
+    <legend>Email</legend>
+    <input type="text" class="form-control" placeholder="Enter email here" formControlName="email">
+  </fieldset>
+  <div class="warning-alert"
+    *ngIf="profileForm.get('email').invalid
+    && (profileForm.get('email').touched || profileForm.get('email').dirty)">
+    Email is Required and properly written.
+  </div>
+  <fieldset class="form-fieldset">
+    <legend>Phone</legend>
+    <input type="text" class="form-control" placeholder="Enter phone number here" formControlName="phone">
+  </fieldset>
+  <div class="warning-alert"
+    *ngIf="profileForm.get('phone').invalid && profileForm.get('phone').touched">
+    Phone must be 12 Digit.
+  </div>
+  <fieldset class="form-fieldset">
+    <legend>address</legend>
+    <input type="text" class="form-control" placeholder="60357, frankfurt" formControlName="address">
+  </fieldset>
+  <div class="warning-alert"
+    *ngIf="profileForm.get('address').invalid && profileForm.get('address').touched">
+    Please check the address format <em>60357, frankfurt</em>.
+  </div>
+  <fieldset class="form-fieldset">
+    <legend>Message</legend>
+    <textarea cols="30" rows="10" class="form-textarea" placeholder="Say something!!"
+      formControlName="message"></textarea>
+  </fieldset>
+  <button class="btn btn-submit" type="submit" [disabled]="!profileForm.valid">Some Action!!</button>
+  <p>Form Value: {{ profileForm.value | json}}</p>
+  <p>Form Status: {{ profileForm.Status }}</p>
+</form>
+
